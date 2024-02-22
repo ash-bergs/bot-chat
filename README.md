@@ -6,8 +6,7 @@ Bot-Chat is an experimental real-time chat application built with Next.js, lever
 
 ## Stack
 
--Next.js
-
+- Next.js
 - Prisma
 - NextAuth
 - Tailwind CSS
