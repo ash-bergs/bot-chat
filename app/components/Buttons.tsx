@@ -13,6 +13,7 @@ export function Logout() {
   );
 }
 
+// TODO: there's a lag when clicking login, create a loading indicator
 export function NavLogin() {
   return (
     <button
