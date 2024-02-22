@@ -10,7 +10,7 @@ Bot-Chat is an experimental real-time chat application built with Next.js, lever
 - Prisma
 - NextAuth
 - Tailwind CSS
-  -Supabase: An open-source Firebase alternative providing backend services
+- Supabase: An open-source Firebase alternative providing backend services
 
 ## Learning Objectives
 
