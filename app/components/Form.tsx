@@ -1,14 +1,15 @@
 "use client";
 
 import { useRef } from "react";
+import { postData } from "../action";
 
 export default function Form() {
   const formRef = useRef<HTMLFormElement>(null);
   return (
     <form
       action={async (formData) => {
-        // TODO: Send message
-        formRef.current?.reset();
+        await postData(formData);
+        //formRef.current?.reset();
       }}
       ref={formRef}
       className="p-6 fixed bottom-0 left-0 w-full bg-white"

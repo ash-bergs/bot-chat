@@ -1,0 +1,30 @@
+"use server";
+import { getServerSession } from "next-auth";
+import prisma from "./lib/db";
+import { authOptions } from "./lib/auth";
+
+export async function postData(formData: FormData) {
+  // server functions must always be marked as "use server"
+  "use server";
+  const session = await getServerSession(authOptions);
+  const message = formData.get("message");
+
+  // create a new message in the database
+  const data = await prisma.message.create({
+    data: {
+      message: message as string,
+      email: session?.user?.email,
+    },
+    include: {
+      User: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
+  });
+}
+
+// npx prisma studio -> opens prisma studio to view records
+// useful for testing
