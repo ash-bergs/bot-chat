@@ -9,7 +9,7 @@ export default function Form() {
     <form
       action={async (formData) => {
         await postData(formData);
-        //formRef.current?.reset();
+        formRef.current?.reset();
       }}
       ref={formRef}
       className="p-6 fixed bottom-0 left-0 w-full bg-white"

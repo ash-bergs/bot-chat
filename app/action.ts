@@ -5,11 +5,16 @@ import { authOptions } from "./lib/auth";
 
 export async function postData(formData: FormData) {
   // server functions must always be marked as "use server"
-  "use server";
+  ("use server");
+
+  const Pusher = require("pusher");
+
   const session = await getServerSession(authOptions);
   const message = formData.get("message");
 
   // create a new message in the database
+  // npx prisma studio -> opens prisma studio to view records
+  // useful for testing
   const data = await prisma.message.create({
     data: {
       message: message as string,
@@ -24,7 +29,17 @@ export async function postData(formData: FormData) {
       },
     },
   });
-}
 
-// npx prisma studio -> opens prisma studio to view records
-// useful for testing
+  // create pusher event
+  const pusher = new Pusher({
+    id: process.env.PUSHER_APP_ID,
+    key: process.env.NEXT_PUBLIC_PUSHER_KEY,
+    secret: process.env.PUSHER_SECRET,
+    cluster: "us2",
+    useTLS: true,
+  });
+
+  pusher.trigger("chat", "new-event", {
+    message: `${JSON.stringify(data)}\n\n`,
+  });
+}
