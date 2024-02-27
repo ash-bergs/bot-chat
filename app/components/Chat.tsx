@@ -35,8 +35,8 @@ export default function ChatComponent({ data }: iAppProps) {
       cluster: "us2",
     });
     console.log("useEffect run two");
-    const channel = pusher.subscribe("chat");
-    channel.bind("new-event", function (data: any) {
+    const channel = pusher.subscribe("my-channel");
+    channel.bind("my-event", function (data: any) {
       const parsedComments = JSON.parse(data.message);
       console.log(parsedComments);
 
@@ -44,7 +44,7 @@ export default function ChatComponent({ data }: iAppProps) {
     });
 
     return () => {
-      pusher.unsubscribe("chat");
+      pusher.unsubscribe("my-channel");
     };
   }, []);
 

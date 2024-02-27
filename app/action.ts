@@ -32,14 +32,14 @@ export async function postData(formData: FormData) {
 
   // create pusher event
   const pusher = new Pusher({
-    id: process.env.PUSHER_APP_ID,
+    id: process.env.NEXT_PUBLIC_PUSHER_APP_ID,
     key: process.env.NEXT_PUBLIC_PUSHER_KEY,
     secret: process.env.PUSHER_SECRET,
     cluster: "us2",
     useTLS: true,
   });
 
-  pusher.trigger("chat", "new-event", {
+  pusher.trigger("my-channel", "my-event", {
     message: `${JSON.stringify(data)}\n\n`,
   });
 }
