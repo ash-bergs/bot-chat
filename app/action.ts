@@ -38,7 +38,7 @@ export async function postData(formData: FormData) {
     useTLS: true,
   });
 
-  pusher.trigger("my-channel", "chat-event", {
+  await pusher.trigger("my-channel", "chat-event", {
     message: `${JSON.stringify(data)}\n\n`,
   });
 }
