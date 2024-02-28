@@ -29,17 +29,22 @@ export async function postData(formData: FormData) {
       },
     },
   });
+  // console log with lots of emojis
+  console.log(
+    "🚀 ~ file: action.ts ~ line 30 ~ env ~ app id",
+    process.env.NEXT_PUBLIC_PUSHER_APP_ID
+  );
 
   // create pusher event
   const pusher = new Pusher({
-    id: process.env.NEXT_PUBLIC_PUSHER_APP_ID,
+    appId: "1762055",
     key: process.env.NEXT_PUBLIC_PUSHER_KEY,
     secret: process.env.PUSHER_SECRET,
     cluster: "us2",
     useTLS: true,
   });
 
-  pusher.trigger("my-channel", "my-event", {
+  pusher.trigger("my-channel", "chat-event", {
     message: `${JSON.stringify(data)}\n\n`,
   });
 }

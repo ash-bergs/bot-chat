@@ -36,7 +36,7 @@ export default function ChatComponent({ data }: iAppProps) {
     });
     console.log("useEffect run two");
     const channel = pusher.subscribe("my-channel");
-    channel.bind("my-event", function (data: any) {
+    channel.bind("chat-event", function (data: any) {
       const parsedComments = JSON.parse(data.message);
       console.log(parsedComments);
 
