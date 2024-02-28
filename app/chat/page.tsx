@@ -26,7 +26,7 @@ async function getData() {
   return data;
 }
 
-// Add
+// no-cache
 export const dynamic = "force-dynamic";
 
 export default async function Chathomepage() {

@@ -29,15 +29,9 @@ export async function postData(formData: FormData) {
       },
     },
   });
-  // console log with lots of emojis
-  console.log(
-    "🚀 ~ file: action.ts ~ line 30 ~ env ~ app id",
-    process.env.NEXT_PUBLIC_PUSHER_APP_ID
-  );
 
-  // create pusher event
   const pusher = new Pusher({
-    appId: "1762055",
+    appId: process.env.NEXT_PUBLIC_PUSHER_APP_ID,
     key: process.env.NEXT_PUBLIC_PUSHER_KEY,
     secret: process.env.PUSHER_SECRET,
     cluster: "us2",

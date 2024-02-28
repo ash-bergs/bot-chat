@@ -18,23 +18,11 @@ export default function ChatComponent({ data }: iAppProps) {
   const [totalComments, setTotalComments] = useState(data);
   const messageEndRef = useRef<HTMLInputElement>(null);
 
-  // TODO: this isn't running as expected
-  // debug
-  /** 
-   * Just noticed:
-   *   name: 'PusherRequestError',
-  message: 'Unexpected status code 400',
-  url: 'https://api-us2.pusher.com/apps/undefined/events?auth_key=a7d02a40bf8bfa0df575&auth_timestamp=1709012537&auth_version=1.0&body_md5=4fdef5b68f18534321f0883395bd6742&auth_signature=48d2a569d6bcf4dd8db23e774eb61784c9f24528fd244b2c7d62408553a7f839',
-  error: undefined,
-  status: 400,
-  body: 'Token validated, but invalid for app undefined\n'
-   */
   useEffect(() => {
-    console.log("useEffect run one");
     const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY as string, {
       cluster: "us2",
     });
-    console.log("useEffect run two");
+
     const channel = pusher.subscribe("my-channel");
     channel.bind("chat-event", function (data: any) {
       const parsedComments = JSON.parse(data.message);
